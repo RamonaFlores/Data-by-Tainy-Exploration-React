@@ -1,4 +1,15 @@
 import React from 'react'
+import {TiLocationArrow} from "react-icons/ti";
+
+
+
+const BentoTilt= ( { children, className = ''}) => {
+    return (
+        <div>{children}"</div>
+    )
+}
+
+
 const BentoCard = ({src,title,description,isComingSoon,titleColor,descriptionColor}) => {
     return (
         <div className='relative size-full'>
@@ -68,6 +79,49 @@ const Features = () => {
                         descriptionColor='text-white '
                     />
 
+                </div>
+                <div className='grid h-[135vh] grid-cols-2 grid-rows-3 gap-7'>
+                    <div className="bento-tilt_1 row-span-1  md:col-span-1 md:row-span-2">
+                        <BentoCard
+                            src="videos/feature-2.mp4"
+                            title={<>T<b>a</b>iny </>}
+                            description={'For over 20 years, Tainy, once the protégé of Luny Tunes, has been at the forefront of reggaeton’s evolution. Combining the genre’s roots with bold innovation, he has crafted iconic hits for global stars and continually pushed Latin music into uncharted territory, solidifying his legacy as a pioneer.'}
+                            titleColor='text-blue-50'
+                            descriptionColor='text-white '
+                        />
+                    </div>
+                    <div className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
+                        <BentoCard src='videos/feature-3.mp4'
+                                   title={<><b>A</b>m<b>o</b>r </>}
+                                   description="A heartfelt love letter to Latin music, with a special devotion to the rich sounds and legacy of Puerto Rican culture."
+                                   titleColor='text-blue-50'
+                                   descriptionColor='text-white '/>
+
+                    </div>
+                    <div className="bento-tilt_1 me-14 md:col-span-1 md:me-0 ">
+                        <BentoCard src='videos/feature-4.mp4'
+                                   title={<><b>l</b>e<b>G</b>a<b>C</b>Y </>}
+                                   description="Mamoru Oshii’s visionary art direction for DATA infuses the album with a cinematic depth that reflects Tainy’s love for anime and its storytelling power. Oshii, known for masterpieces like Ghost in the Shell, brings a futuristic yet humanistic aesthetic to the project, perfectly complementing the album’s themes of transformation and connection."
+                                   titleColor='text-white'
+                                   descriptionColor='text-white'/>
+
+                    </div>
+                    <div className="bento-tilt-2">
+                        <div className='flex size-full flex-col justify-between bg-violet-300 p-5'>
+                            <h1 className='bento-title special-font max-w-64 text-black'>
+                                p<b>a</b>rce escuch<b>e</b> D<b>a</b>t<b>a</b>!
+                            </h1>
+                            <TiLocationArrow className='m-5 scale-[5] self-end' />
+                        </div>
+                    </div>
+                    <div className="bento-tilt-2">
+                        <video
+                            src='videos/feature-5.mp4'
+                            loop
+                            muted
+                            autoPlay
+                            className='size-full object-cover object-center'/>
+                    </div>
                 </div>
             </div>
         </section>
