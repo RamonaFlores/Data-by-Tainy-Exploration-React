@@ -124,7 +124,9 @@ const Hero = () => {
                       <p className='mb-5 max-w-64 font-robert-regular text-blue-100'> DATA reshapes abstraction
                           into<br/> groundbreaking experiments that push Latin music to new frontiers</p>
                       <Button id='watch-trailer' title='Stream DATA' leftIcon={<TiLocationArrow/>}
-                              containerClass='!bg-yellow-300 flex-center gap-1'/>
+                              containerClass='!bg-yellow-300 flex-center gap-1'
+                              onClick={() => window.open('https://open.spotify.com/intl-es/album/6xRxlUUfg3M0QB1LUX89gA?si=Bl7UqRMiTvyGoQZZQ_bmpQ', '_blank')}
+                      />
 
                   </div>
               </div>

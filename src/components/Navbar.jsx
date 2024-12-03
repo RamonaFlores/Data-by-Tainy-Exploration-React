@@ -4,7 +4,7 @@ import {TiLocationArrow} from "react-icons/ti";
 import {useWindowScroll} from 'react-use'
 import gsap from 'gsap';
 //Creating an array with the navbar items prevents the code from getting too messy.
-const navItems = ['Nexus','Vault','Prologue','About','Contact'];
+const navItems = ['Nexus','Vault','Prologue','About','Album'];
 
 
 const Navbar = () => {
@@ -67,16 +67,21 @@ const Navbar = () => {
                         <img src='/img/logo.png' alt='Logo' className='w-10' />
                         <Button
                             id="product-button"
-                            title="Products"
+                            title="Stream Data"
                             rightIcon={<TiLocationArrow />}
                             containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
+                            onClick={() => window.open('https://open.spotify.com/intl-es/album/6xRxlUUfg3M0QB1LUX89gA?si=Bl7UqRMiTvyGoQZZQ_bmpQ', '_blank')}
                         />
 
                     </div>
                     <div className='flex h-full items-center'>
                         <div className='hidden md:block'>
-                            {navItems.map((item) => (
-                                <a key={item} className='nav-hover-btn' href={`#${item.toLowerCase()}`}>
+                            {navItems.map((item, index) => (
+                                <a
+                                    key={index}
+                                    href={`#${item.toLowerCase()}`}
+                                    className="nav-hover-btn"
+                                >
                                     {item}
                                 </a>
                             ))}
