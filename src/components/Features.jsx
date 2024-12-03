@@ -1,13 +1,40 @@
-import React from 'react'
+import React, {useRef, useState} from 'react'
 import {TiLocationArrow} from "react-icons/ti";
 
 
 
 const BentoTilt= ( { children, className = ''}) => {
+    const [transformStyle, setTransformStyle] = useState('')
+    const itemRef = useRef(null);
+    const handleMouseMove = (event) => {
+        if (!itemRef.current) return;
+        const {left, top , width , height } = itemRef.current.getBoundingClientRect();
+
+        const relativeX=(event.clientX - left) / width;
+        const relativeY=(event.clientY - top) / height;
+
+        const tiltX=(relativeY-0.5)* 15;
+        const tiltY=(relativeX-0.5)* -15;
+        const newTransform=`perspective(700px) rotateX(${tiltX}deg)
+        rotateY(${tiltY}deg) scale3d(0.98,0.98,0.98)`
+
+        setTransformStyle(newTransform);
+
+    }
+    const handleMouseLeave = () => {
+        setTransformStyle('')
+    }
     return (
-        <div>{children}"</div>
-    )
-}
+        <div className={className} ref={itemRef}
+             //It's a good practice to attach the handler to the type haha
+             onMouseMove={handleMouseMove}
+             onMouseLeave={handleMouseLeave}
+        style={{transform:transformStyle}}
+        >
+            {children}
+        </div>
+    );
+};
 
 
 const BentoCard = ({src,title,description,isComingSoon,titleColor,descriptionColor}) => {
@@ -67,7 +94,7 @@ const Features = () => {
                     </p>
                 </div>
 
-                <div className='border-hsla relative mb-7 h-96 w-full overflowh-hidden rounded-md md:[65vh]'>
+                <BentoTilt className='border-hsla relative mb-7 h-96 w-full overflowh-hidden rounded-md md:[65vh]'>
                     <BentoCard
                         src='videos/feature-1.mp4'
                         title={<>Over <b>20 </b> featured Artists </>}
@@ -78,10 +105,10 @@ const Features = () => {
                         titleColor='text-blue-50'
                         descriptionColor='text-white '
                     />
+                </BentoTilt>
 
-                </div>
                 <div className='grid h-[135vh] grid-cols-2 grid-rows-3 gap-7'>
-                    <div className="bento-tilt_1 row-span-1  md:col-span-1 md:row-span-2">
+                    <BentoTilt className="bento-tilt_1 row-span-1  md:col-span-1 md:row-span-2">
                         <BentoCard
                             src="videos/feature-2.mp4"
                             title={<>T<b>a</b>iny </>}
@@ -89,39 +116,39 @@ const Features = () => {
                             titleColor='text-blue-50'
                             descriptionColor='text-white '
                         />
-                    </div>
-                    <div className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
+                    </BentoTilt>
+                    <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
                         <BentoCard src='videos/feature-3.mp4'
                                    title={<><b>A</b>m<b>o</b>r </>}
                                    description="A heartfelt love letter to Latin music, with a special devotion to the rich sounds and legacy of Puerto Rican culture."
                                    titleColor='text-blue-50'
                                    descriptionColor='text-white '/>
 
-                    </div>
-                    <div className="bento-tilt_1 me-14 md:col-span-1 md:me-0 ">
+                    </BentoTilt>
+                    <BentoTilt className="bento-tilt_1 me-14 md:col-span-1 md:me-0 ">
                         <BentoCard src='videos/feature-4.mp4'
                                    title={<><b>l</b>e<b>G</b>a<b>C</b>Y </>}
                                    description="Mamoru Oshii’s visionary art direction for DATA infuses the album with a cinematic depth that reflects Tainy’s love for anime and its storytelling power. Oshii, known for masterpieces like Ghost in the Shell, brings a futuristic yet humanistic aesthetic to the project, perfectly complementing the album’s themes of transformation and connection."
                                    titleColor='text-white'
                                    descriptionColor='text-white'/>
 
-                    </div>
-                    <div className="bento-tilt-2">
+                    </BentoTilt>
+                    <BentoTilt className="bento-tilt-2">
                         <div className='flex size-full flex-col justify-between bg-violet-300 p-5'>
                             <h1 className='bento-title special-font max-w-64 text-black'>
                                 p<b>a</b>rce escuch<b>e</b> D<b>a</b>t<b>a</b>!
                             </h1>
                             <TiLocationArrow className='m-5 scale-[5] self-end' />
                         </div>
-                    </div>
-                    <div className="bento-tilt-2">
+                    </BentoTilt>
+                    <BentoTilt className="bento-tilt-2">
                         <video
                             src='videos/feature-5.mp4'
                             loop
                             muted
                             autoPlay
                             className='size-full object-cover object-center'/>
-                    </div>
+                    </BentoTilt>
                 </div>
             </div>
         </section>
